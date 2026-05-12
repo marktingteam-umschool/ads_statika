@@ -12,19 +12,22 @@ body {
     align-items: center; /* Центрируем по горизонтали */
 }
 
+/* Заголовок */
 h1 {
     font-size: 2.5em;
     color: #0088cc; /* Цвет для заголовка */
     text-align: center;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Отступ снизу */
+    padding-top: 10px; /* Отступ сверху, чтобы заголовок не был прижат к верху */
+    margin-top: 0; /* Убираем лишний отступ сверху */
 }
 
 /* Форма */
 form {
     background-color: #ffffff;
     max-width: 600px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -48,14 +51,14 @@ input, select, textarea {
 
 /* Изменение фона при фокусе */
 input:focus, select:focus, textarea:focus {
-    background-color: #f1faff; 
+    background-color: #f1faff;
     border-color: #0088cc;
     outline: none;
 }
 
 /* Кнопка отправки */
 button {
-    background-color: #0088cc; 
+    background-color: #0088cc;
     color: white;
     padding: 12px 20px;
     font-size: 1rem;
@@ -67,8 +70,8 @@ button {
 
 /* Эффект при наведении на кнопку */
 button:hover {
-    background-color: #006bb3; 
-    transform: scale(1.05); 
+    background-color: #006bb3;
+    transform: scale(1.05);
 }
 
 /* Индикатор загрузки */
