@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание картинок для контекстной рекламы</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
+
     <h1>Создание картинок для контекстной рекламы</h1>
 
     <!-- Форма для сбора данных -->
@@ -22,7 +23,7 @@
         </select><br><br>
 
         <label for="wishes">Напиши что хочешь видеть:</label><br>
-        <textarea id="wishes" name="wishes" rows="4" cols="25" required></textarea><br><br>
+        <textarea id="wishes" name="wishes" rows="4" cols="50" required></textarea><br><br>
 
         <label for="style">Стиль картинки:</label><br>
         <select id="style" name="style" required>
@@ -33,18 +34,18 @@
         </select><br><br>
 
         <label for="text_on_image">Надпись на картинке и где она должна быть:</label><br>
-        <textarea id="text_on_image" name="text_on_image" rows="4" cols="25" required></textarea><br><br>
+        <textarea id="text_on_image" name="text_on_image" rows="4" cols="50" required></textarea><br><br>
 
         <button type="submit">Отправить текстовые данные</button>
     </form>
 
-    <!-- Элемент для отображения изображения после обработки в n8n -->
-    <div id="image-container" style="margin-top: 20px;"></div>
-
     <!-- Индикатор загрузки с таймером -->
-    <div id="loading-indicator" style="display: none; font-size: 18px; color: #007bff;">
+    <div id="loading-indicator">
         Подождите, изображение загружается... Время ожидания: <span id="timer">0</span> секунд.
     </div>
+
+    <!-- Элемент для отображения изображения после обработки в n8n -->
+    <div id="image-container"></div>
 
     <script>
         // Обработка отправки текстовых данных
@@ -59,8 +60,6 @@
             loadingIndicator.style.display = 'block';
 
             let timer = 0;
-
-            // Функция для обновления таймера каждую секунду
             const interval = setInterval(function() {
                 timer++;
                 timerElement.innerText = timer; // Обновляем таймер
@@ -73,35 +72,37 @@
             })
             .then(response => response.json())
             .then(result => {
-                console.log('Текстовые данные отправлены:', result);
-                alert('Текстовые данные отправлены!');
-
-                // Теперь получаем изображение через n8n
-                // (предполагаем, что URL изображения будет возвращен из n8n)
-                const imageUrl = result.imageUrl; // Получаем URL изображения от n8n
-
-                if (imageUrl) {
-                    // Покажем загруженное изображение на сайте
-                    const img = document.createElement('img');
-                    img.src = imageUrl; // Используем imageUrl из ответа n8n
-                    img.alt = "Загруженное изображение"; // Добавляем описание изображения
-                    img.style.maxWidth = '100%'; // Ограничиваем максимальную ширину
-                    img.style.marginTop = '20px'; // Добавляем отступ сверху
-
-                    document.getElementById('image-container').appendChild(img); // Добавляем изображение в контейнер
-                }
-
                 // Останавливаем таймер и скрываем индикатор
                 clearInterval(interval);
                 loadingIndicator.style.display = 'none';
+
+                // Проверяем, успешен ли запрос
+                if (result.success) {
+                    console.log('Текстовые данные отправлены:', result);
+                    alert('Текстовые данные отправлены!');
+
+                    // Теперь получаем изображение через n8n
+                    const imageUrl = result.imageUrl; // Получаем URL изображения от n8n
+
+                    if (imageUrl) {
+                        // Покажем загруженное изображение на сайте
+                        const img = document.createElement('img');
+                        img.src = imageUrl; // Используем imageUrl из ответа n8n
+                        img.alt = "Загруженное изображение";
+                        img.style.maxWidth = '100%'; // Ограничиваем максимальную ширину
+                        img.style.marginTop = '20px'; // Добавляем отступ сверху
+
+                        document.getElementById('image-container').appendChild(img); // Добавляем изображение в контейнер
+                    }
+                }
             })
             .catch(error => {
-                console.error('Ошибка:', error);
-                alert('Что-то пошло не так. Попробуйте снова.');
-
                 // Останавливаем таймер и скрываем индикатор в случае ошибки
                 clearInterval(interval);
                 loadingIndicator.style.display = 'none';
+
+                console.error('Ошибка:', error);
+                alert('Что-то пошло не так. Попробуйте снова.');
             });
         });
     </script>
