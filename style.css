@@ -1,15 +1,16 @@
 /* Общие стили */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e5e5e5; /* Светлый серый фон */
+    background-color: #f1f1f1; /* Светлый фон */
     margin: 0;
     padding: 0;
     color: #333;
 }
 
+/* Заголовок */
 h1 {
     font-size: 2.5em;
-    color: #0088cc; /* Синий цвет Telegram */
+    color: #0088cc; /* Цвет для заголовка, похожий на цвет Telegram */
     text-align: center;
     margin-top: 50px;
     font-weight: bold;
@@ -53,7 +54,7 @@ input:focus, select:focus, textarea:focus {
     outline: none;
 }
 
-/* Кнопки */
+/* Кнопка отправки */
 button {
     background-color: #0088cc; /* Синий фон Telegram */
     color: white;
@@ -65,9 +66,18 @@ button {
     transition: all 0.3s ease;
 }
 
+/* Эффект при наведении на кнопку */
 button:hover {
     background-color: #006bb3; /* Более темный синий при наведении */
     transform: scale(1.05); /* Легкое увеличение кнопки */
+}
+
+/* Индикатор загрузки */
+#loading-indicator {
+    font-size: 18px;
+    color: #007bff;
+    font-weight: bold;
+    display: none; /* Скрываем, пока не нужно показывать */
 }
 
 /* Стили для текста */
@@ -90,4 +100,12 @@ select {
     h1 {
         font-size: 2em;
     }
+}
+
+/* Стили для изображения */
+#image-container img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
