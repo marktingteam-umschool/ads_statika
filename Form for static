@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание картинок для контекстной рекламы</title>
+</head>
+<body>
+    <h1>Создание картинок для контекстной рекламы</h1>
+
+    <!-- Форма для сбора данных -->
+    <form id="image-form">
+        <!-- Выбор формата картинки -->
+        <label for="format">Выбери формат:</label><br>
+        <select id="format" name="format" required>
+            <option value="9:16">9:16</option>
+            <option value="4:3">4:3</option>
+            <option value="16:9">16:9</option>
+        </select><br><br>
+
+        <!-- Пожелания по картинке -->
+        <label for="wishes">Напиши что хочешь видеть:</label><br>
+        <textarea id="wishes" name="wishes" rows="4" cols="50" required></textarea><br><br>
+
+        <!-- Выбор стиля картинки -->
+        <label for="style">Стиль картинки:</label><br>
+        <select id="style" name="style" required>
+            <option value="minimalistic">Минималистичный</option>
+            <option value="bright">Яркий</option>
+            <option value="vintage">Винтаж</option>
+            <option value="cartoon">Мультяшный</option>
+        </select><br><br>
+
+        <!-- Надпись на картинке и её расположение -->
+        <label for="text_on_image">Надпись на картинке и где она должна быть:</label><br>
+        <textarea id="text_on_image" name="text_on_image" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <script>
+        // Обработка отправки формы
+        document.getElementById('image-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Отменяем стандартное поведение формы
+
+            // Собираем данные из формы
+            const formData = new FormData(this);
+
+            // Преобразуем данные в объект
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            // Отправляем данные на Webhook n8n
+            fetch('https://your-n8n-instance-url/webhook/receive-form-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data), // Отправляем данные как JSON
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Успех:', result);
+                alert('Форма успешно отправлена!');
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Что-то пошло не так. Попробуйте снова.');
+            });
+        });
+    </script>
+
+</body>
+</html>
