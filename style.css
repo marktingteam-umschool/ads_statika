@@ -1,7 +1,7 @@
 /* Общие стили */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9; /* Светло-серый фон */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e5e5e5; /* Светлый серый фон */
     margin: 0;
     padding: 0;
     color: #333;
@@ -9,29 +9,32 @@ body {
 
 h1 {
     font-size: 2.5em;
-    color: #007bff; /* Синий для акцентов */
+    color: #0088cc; /* Синий цвет Telegram */
     text-align: center;
     margin-top: 50px;
+    font-weight: bold;
 }
 
 /* Форма */
 form {
-    background-color: #fff; /* Белый фон формы */
-    max-width: 700px;
+    background-color: #ffffff; /* Белый фон формы */
+    max-width: 600px;
     margin: 40px auto;
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
 }
 
+/* Метки */
 label {
     font-weight: bold;
     margin-bottom: 5px;
     color: #555;
 }
 
+/* Поля ввода */
 input, select, textarea {
     padding: 12px;
     font-size: 1rem;
@@ -39,49 +42,49 @@ input, select, textarea {
     border-radius: 8px;
     border: 1px solid #ccc;
     width: 100%;
+    background-color: #f7f7f7;
+    transition: all 0.3s ease-in-out;
 }
 
+/* Изменение фона при фокусе */
 input:focus, select:focus, textarea:focus {
-    border-color: #007bff; /* Синий цвет фокуса */
+    background-color: #f1faff; /* Легкий голубоватый фон */
+    border-color: #0088cc;
     outline: none;
 }
 
-/* Стиль для кнопки */
+/* Кнопки */
 button {
-    background-color: #007bff; /* Синий фон для кнопки */
+    background-color: #0088cc; /* Синий фон Telegram */
     color: white;
-    padding: 15px;
-    font-size: 1.1rem;
+    padding: 12px 20px;
+    font-size: 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Темно-синий при наведении */
+    background-color: #006bb3; /* Более темный синий при наведении */
+    transform: scale(1.05); /* Легкое увеличение кнопки */
 }
 
 /* Стили для текста */
 textarea {
     resize: vertical; /* Разрешаем изменять размер по вертикали */
-    min-height: 150px; /* Минимальная высота текстового поля */
+    min-height: 150px;
 }
 
 select {
     cursor: pointer;
 }
 
-/* Стили для фона */
-body {
-    background-color: #f4f4f9; /* Светлый фон */
-}
-
 /* Мобильная адаптивность */
 @media (max-width: 768px) {
     form {
-        padding: 19px;
-        margin: 19px;
+        padding: 20px;
+        margin: 20px;
     }
 
     h1 {
