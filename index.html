@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание картинок для контекстной рекламы</title>
-    <!-- Подключаем стили --> 
+    
+    <!-- Подключаем внешний файл стилей -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,30 +13,26 @@
 
     <!-- Форма для сбора данных -->
     <form id="image-form">
-        <!-- Выбор формата картинки -->
-        <label for="format">Выбери формат:</label><br>
+        <label for="format">Выбери формат:</label>
         <select id="format" name="format" required>
             <option value="9:16">9:16</option>
             <option value="4:3">4:3</option>
             <option value="16:9">16:9</option>
-        </select><br><br>
+        </select>
 
-        <!-- Пожелания по картинке -->
-        <label for="wishes">Напиши что хочешь видеть:</label><br>
-        <textarea id="wishes" name="wishes" rows="4" cols="50" required></textarea><br><br>
+        <label for="wishes">Напиши что хочешь видеть:</label>
+        <textarea id="wishes" name="wishes" rows="4" cols="50" required></textarea>
 
-        <!-- Выбор стиля картинки -->
-        <label for="style">Стиль картинки:</label><br>
+        <label for="style">Стиль картинки:</label>
         <select id="style" name="style" required>
             <option value="minimalistic">Минималистичный</option>
             <option value="bright">Яркий</option>
             <option value="vintage">Винтаж</option>
             <option value="cartoon">Мультяшный</option>
-        </select><br><br>
+        </select>
 
-        <!-- Надпись на картинке и её расположение -->
-        <label for="text_on_image">Надпись на картинке и где она должна быть:</label><br>
-        <textarea id="text_on_image" name="text_on_image" rows="4" cols="50" required></textarea><br><br>
+        <label for="text_on_image">Надпись на картинке и где она должна быть:</label>
+        <textarea id="text_on_image" name="text_on_image" rows="4" cols="50" required></textarea>
 
         <button type="submit">Отправить</button>
     </form>
@@ -48,19 +45,17 @@
             // Собираем данные из формы
             const formData = new FormData(this);
 
-            // Преобразуем данные в объект
             const data = {};
             formData.forEach((value, key) => {
                 data[key] = value;
             });
 
-            // Отправляем данные на Webhook n8n
             fetch('https://your-n8n-instance-url/webhook/receive-form-data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data), // Отправляем данные как JSON
+                body: JSON.stringify(data),
             })
             .then(response => response.json())
             .then(result => {
