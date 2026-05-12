@@ -80,8 +80,8 @@ body {
 /* Мобильная адаптивность */
 @media (max-width: 768px) {
     form {
-        padding: 20px;
-        margin: 20px;
+        padding: 19px;
+        margin: 19px;
     }
 
     h1 {
